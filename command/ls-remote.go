@@ -3,6 +3,7 @@ package command
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -28,6 +29,8 @@ func LsRemote(os, arch string) (map[*semver.Version]string, error) {
 	}
 	releaseMap := make(map[*semver.Version]string)
 	for key, value := range index[os][arch] {
+		fmt.Println("Key: ", key)
+		fmt.Println("Value: ", value)
 		var prefix string
 		if key != "jdk" {
 			if !strings.Contains(key, "@") {
